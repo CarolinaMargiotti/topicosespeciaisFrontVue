@@ -19,6 +19,18 @@
 	color: #2c3e50;
 }
 
+input {
+	border-radius: 4px;
+}
+
+button {
+	font-weight: bold;
+	color: #42b983;
+	background-color: #2c3e50;
+	border-radius: 4px;
+	border-color: transparent;
+}
+
 nav {
 	padding: 30px;
 }
