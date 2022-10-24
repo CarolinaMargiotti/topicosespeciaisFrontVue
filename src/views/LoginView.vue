@@ -16,6 +16,7 @@
 
 <script>
 import axios from "axios";
+import { mapMutations } from "vuex";
 
 export default {
 	name: "LoginView",
@@ -27,6 +28,7 @@ export default {
 		};
 	},
 	methods: {
+		...mapMutations(["setToken"]),
 		async login() {
 			await axios
 				.post("login", {
@@ -34,7 +36,9 @@ export default {
 					password: this.password,
 				})
 				.then((res) => {
-					this.status = res.data.token;
+					const token = res.data.token;
+					this.status = token;
+					this.setToken(token);
 				})
 				.catch((error) => {
 					this.status = error.message;
