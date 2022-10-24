@@ -1,13 +1,16 @@
 <template>
 	<div>
-		<p>Login</p>
+		<h2>Login</h2>
 		<input v-model="user" type="text" />
+		<br />
 		<br />
 		<input v-model="password" type="password" />
 		<br />
+		<br />
 		<button @click="login">Logar</button>
 		<br />
-		<h2>{{ status }}</h2>
+		<br />
+		<h4>{{ status }}</h4>
 	</div>
 </template>
 
@@ -26,15 +29,12 @@ export default {
 	methods: {
 		async login() {
 			await axios
-				.post(
-					"https://8080-carolinamar-topicosespe-vvyd2gjo61c.ws-us72.gitpod.io/login",
-					{
-						username: this.user,
-						password: this.password,
-					}
-				)
-				.then(() => {
-					this.status = "ok";
+				.post("login", {
+					username: this.user,
+					password: this.password,
+				})
+				.then((res) => {
+					this.status = res.data.token;
 				})
 				.catch((error) => {
 					this.status = error.message;
